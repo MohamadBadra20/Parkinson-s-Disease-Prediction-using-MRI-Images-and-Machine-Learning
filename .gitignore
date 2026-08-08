@@ -12,9 +12,8 @@ Thumbs.db
 # Secrets — never commit real values, only .env.example
 .env
 
-# Regeneratable intermediate data (rebuild via notebooks/01 and 02,
-# or via Docker + fMRIPrep — see fmriprep_out/README.md)
-derivatives/
+# Regeneratable intermediate data — too large to be worth pushing
+# (rebuild via Docker + fMRIPrep, see fmriprep_out/README.md)
 fmriprep_out/*
 !fmriprep_out/README.md
 
@@ -25,6 +24,5 @@ NeuroVision_Final/uploads/*
 NeuroVision_Final/previews/*
 !NeuroVision_Final/previews/.gitkeep
 
-# Large trained-model artifacts — see README for how to regenerate,
-# or use Git LFS if you want these versioned directly
-models/*.pkl
+# NeuroVision_Final/soft_voting_deployment/*.pkl and models/*.pkl are
+# small enough (~1-12MB) to commit directly — not excluded.
