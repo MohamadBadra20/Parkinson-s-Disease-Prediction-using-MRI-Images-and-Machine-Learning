@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# OS / archive junk
+__MACOSX/
+.DS_Store
+Thumbs.db
+
+# Secrets — never commit real values, only .env.example
+.env
+
+# Regeneratable intermediate data (rebuild via notebooks/01 and 02,
+# or via Docker + fMRIPrep — see fmriprep_out/README.md)
+derivatives/
+fmriprep_out/*
+!fmriprep_out/README.md
+
+# Real runtime data — these must not be committed
+NeuroVision_Final/database.db
+NeuroVision_Final/uploads/*
+!NeuroVision_Final/uploads/.gitkeep
+NeuroVision_Final/previews/*
+!NeuroVision_Final/previews/.gitkeep
+
+# Large trained-model artifacts — see README for how to regenerate,
+# or use Git LFS if you want these versioned directly
+models/*.pkl
