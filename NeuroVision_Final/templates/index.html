@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}NeuroVision | AI-Assisted MRI Analysis{% endblock %}
+{% block content %}
+<section class="hero"><div class="container hero-grid">
+<div><span class="eyebrow"><i class="fa-solid fa-microscope"></i> Parkinson’s disease research</span>
+<h1>Turn brain imaging into clearer insights.</h1>
+<p>NeuroVision is an AI-assisted platform that analyzes resting-state fMRI connectivity features using a soft-voting machine-learning model to support Parkinson’s disease research and assessment.</p>
+<div class="hero-actions">{% if session.get('username') %}<a class="btn btn-light" href="{{ url_for('upload') }}"><i class="fa-solid fa-upload"></i> Analyze an MRI</a>{% else %}<a class="btn btn-light" href="{{ url_for('login') }}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign in to analyze</a>{% endif %}<a class="btn btn-ghost" href="{{ url_for('how_it_works') }}">Explore the pipeline <i class="fa-solid fa-arrow-right"></i></a></div></div>
+<div class="hero-card"><img src="{{ url_for('images',filename='Scanner 2.jpg') }}" alt="MRI scanner"></div>
+</div></section>
+<section class="section"><div class="container"><div class="section-head"><h2>Designed around your research workflow</h2><p>From an accepted NIfTI file to a transparent prediction report, each stage is presented clearly.</p></div>
+<div class="grid-3">
+<div class="card"><div class="icon-box"><i class="fa-solid fa-file-medical"></i></div><h3>1. Upload NIfTI</h3><p>Submit a resting-state fMRI scan in <strong>.nii</strong> or <strong>.nii.gz</strong> format with the required preprocessing and MNI-space characteristics.</p></div>
+<div class="card"><div class="icon-box"><i class="fa-solid fa-network-wired"></i></div><h3>2. Extract connectivity</h3><p>The system aligns the AAL atlas, extracts 116 ROI signals and computes 6,670 upper-triangle functional-connectivity features.</p></div>
+<div class="card"><div class="icon-box"><i class="fa-solid fa-chart-simple"></i></div><h3>3. Review prediction</h3><p>A soft-voting ensemble produces a probability and classification thresholded by the model configuration.</p></div>
+</div></div></section>
+<section class="section" style="padding-top:0"><div class="container"><div class="card"><div class="section-head" style="margin-bottom:20px"><h2>Important limitation</h2><p>This platform is a research prototype. Its output must not be interpreted as a medical diagnosis or used alone to make treatment decisions.</p></div><div class="notice info"><i class="fa-solid fa-circle-info"></i> Results should be reviewed by a qualified healthcare professional alongside clinical history, neurological examination and other appropriate investigations.</div></div></div></section>
+{% endblock %}

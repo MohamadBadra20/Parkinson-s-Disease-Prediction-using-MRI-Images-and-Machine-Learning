@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}NeuroVision{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% block head %}{% endblock %}
+</head>
+<body>
+<header class="site-header">
+<div class="container nav" id="nav">
+<a class="brand" href="{{ url_for('home') }}"><span class="brand-mark"><i class="fa-solid fa-brain"></i></span>NeuroVision</a>
+<button class="mobile-toggle" onclick="document.getElementById('nav').classList.toggle('open')" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+<div class="nav-links">
+<a href="{{ url_for('home') }}">Home</a>
+<a href="{{ url_for('how_it_works') }}">How it works</a>
+{% if session.get('username') %}<a href="{{ url_for('upload') }}">Analyze MRI</a>{% endif %}
+<a href="{{ url_for('about') }}">About</a><a href="{{ url_for('contact') }}">Contact</a>
+{% if session.get('role') == 'admin' %}<a href="{{ url_for('dashboard') }}">Dashboard</a>{% endif %}
+</div>
+<div class="nav-actions">
+{% if session.get('username') %}<a class="btn btn-light" href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+{% else %}<a class="btn btn-light" href="{{ url_for('login') }}"><i class="fa-solid fa-user"></i> Sign in</a>{% endif %}
+</div>
+</div></header>
+{% block content %}{% endblock %}
+<footer class="footer"><div class="container footer-inner"><p><strong>NeuroVision</strong> · AI-assisted Parkinson’s disease research platform</p><p>© 2026 NeuroVision · For research/support only, not a diagnosis</p></div></footer>
+</body></html>

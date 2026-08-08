@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}NeuroVision | How it works{% endblock %}
+{% block content %}<section class="page-hero"><div class="container"><h1>How the pipeline works</h1><p>A clear view of the processing stages behind the prediction.</p></div></section>
+<section class="section"><div class="container">
+<div class="grid-2">
+<div class="card step"><div class="step-num">1</div><div><h3>NIfTI input</h3><p>The system accepts a resting-state fMRI <strong>.nii</strong> or <strong>.nii.gz</strong> file and checks its extension and size before processing.</p></div></div>
+<div class="card step"><div class="step-num">2</div><div><h3>AAL alignment</h3><p>The configured AAL atlas is resampled to the submitted fMRI image using nearest-neighbor interpolation so ROI labels remain discrete.</p></div></div>
+<div class="card step"><div class="step-num">3</div><div><h3>ROI time series</h3><p>Mean signals are extracted from the expected 116 atlas regions across the fMRI time dimension.</p></div></div>
+<div class="card step"><div class="step-num">4</div><div><h3>Functional connectivity</h3><p>Pearson correlations are computed between the 116 ROI signals. The upper triangle produces 6,670 connectivity features.</p></div></div>
+<div class="card step"><div class="step-num">5</div><div><h3>Model ensemble</h3><p>The saved preprocessing/model pipelines receive the feature vector. Their positive-class probabilities are averaged to produce the soft-voting probability.</p></div></div>
+<div class="card step"><div class="step-num">6</div><div><h3>Report</h3><p>The web result shows the classification and probability, with an optional PDF report for documentation.</p></div></div>
+</div>
+<div class="notice info" style="margin-top:24px"><strong>Important:</strong> The model expects the same feature-generation assumptions used during training. A file that merely opens as NIfTI may still be incompatible with the trained model.</div>
+</div></section>{% endblock %}

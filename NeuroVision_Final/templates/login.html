@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}NeuroVision | Sign in{% endblock %}
+{% block content %}<div class="auth-shell"><section class="auth-visual"><div><span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Secure access</span><h1>Neuroimaging analysis, organized.</h1><p>Sign in to access the NeuroVision MRI analysis workflow and review generated research reports.</p></div></section><section class="auth-panel"><div class="auth-box">
+<a class="brand" href="{{ url_for('home') }}"><span class="brand-mark"><i class="fa-solid fa-brain"></i></span>NeuroVision</a><h2>Welcome back</h2><p>Enter your account credentials to continue.</p>
+{% if message %}<div class="notice error">{{ message }}</div>{% endif %}
+<form method="POST"><div class="field"><label>Username</label><input name="username" autocomplete="username" required></div><div class="field"><label>Password</label><input type="password" name="password" autocomplete="current-password" required></div><button class="btn btn-primary" style="width:100%" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button></form>
+<div class="auth-links">Need an account? <a href="{{ url_for('signup') }}">Create one</a></div><div class="security-note">Sessions expire after inactivity and have an absolute lifetime limit.</div></div></section></div>{% endblock %}

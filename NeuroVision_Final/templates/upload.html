@@ -1,0 +1,29 @@
+{% extends "base.html" %}{% block title %}NeuroVision | Analyze MRI{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><h1><i class="fa-solid fa-brain"></i> Analyze a resting-state fMRI</h1><p>Provide patient details and upload a NIfTI scan for the configured research pipeline.</p></div></section>
+<main class="container">
+<div class="form-card">
+{% if errors %}<div class="notice error">{% for e in errors %}<div><i class="fa-solid fa-circle-exclamation"></i> {{ e }}</div>{% endfor %}</div>{% endif %}
+<form method="POST" action="{{ url_for('submit') }}" enctype="multipart/form-data" id="uploadForm">
+<div class="form-grid">
+<div class="field"><label for="name">Patient name</label><input id="name" name="name" value="{{ name|default('') }}" maxlength="100" autocomplete="name" required></div>
+<div class="field"><label for="age">Age</label><input id="age" type="number" name="age" value="{{ age|default('') }}" min="1" max="120" required></div>
+<div class="field full"><label>fMRI file</label>
+<label class="upload-zone" id="dropZone" for="image"><i class="fa-solid fa-cloud-arrow-up"></i><strong>Drop your NIfTI file here</strong><span>or click to browse · .nii / .nii.gz · maximum 500 MB</span><div class="file-name" id="fileName">No file selected</div></label>
+<input class="hidden" id="image" type="file" name="image" accept=".nii,.nii.gz,application/gzip,application/octet-stream" required>
+<div class="help">For the current model, the scan should be compatible with the project’s expected MNI-space/116-region AAL workflow.</div></div>
+</div>
+<div class="disclaimer"><strong>Research-use notice:</strong> NeuroVision provides an AI-assisted prediction, not a diagnosis. Do not upload data you are not authorized to process.</div>
+<div style="margin-top:20px;display:flex;justify-content:flex-end"><button class="btn btn-primary" type="submit" id="submitBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> Run analysis</button></div>
+<div class="progress" id="progress"><div class="help">Processing the scan. This may take a few moments…</div><div class="bar"><span></span></div></div>
+</form></div></main>
+<script>
+const input=document.getElementById('image'), zone=document.getElementById('dropZone'), nameBox=document.getElementById('fileName'), form=document.getElementById('uploadForm');
+function showFile(f){nameBox.textContent=f?f.name:'No file selected'}
+input.addEventListener('change',()=>showFile(input.files[0]));
+['dragenter','dragover'].forEach(e=>zone.addEventListener(e,ev=>{ev.preventDefault();zone.classList.add('dragover')}));
+['dragleave','drop'].forEach(e=>zone.addEventListener(e,ev=>{ev.preventDefault();zone.classList.remove('dragover')}));
+zone.addEventListener('drop',ev=>{if(ev.dataTransfer.files.length){input.files=ev.dataTransfer.files;showFile(input.files[0])}});
+form.addEventListener('submit',()=>{document.getElementById('submitBtn').disabled=true;document.getElementById('progress').classList.add('active')});
+</script>
+{% endblock %}

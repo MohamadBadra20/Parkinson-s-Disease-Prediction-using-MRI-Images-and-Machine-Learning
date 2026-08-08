@@ -1,0 +1,7 @@
+NeuroVision soft-voting deployment package
+Models: SVM_Linear, LogisticRegression, RidgeClassifier
+Voting: mean of P(PD) from the three models
+Decision threshold: 0.35
+Atlas: AAL.nii (116 regions)
+Expected connectivity features: 6670
+Models were exported from models/all_results.pkl (_model). Serialized with scikit-learn 1.8.0.

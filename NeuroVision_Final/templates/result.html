@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}NeuroVision | Analysis Result{% endblock %}
+{% block content %}<main class="result-wrap"><div class="container"><div class="result-card">
+<div class="result-head"><i class="fa-solid fa-circle-check"></i><h1>Analysis complete</h1><p>AI-assisted research result for {{ result.name }}</p></div>
+<div class="result-body">
+<div class="result-grid"><div class="metric"><small>Patient</small><strong>{{ result.name }}</strong></div><div class="metric"><small>Age</small><strong>{{ result.age }}</strong></div><div class="metric"><small>Report date</small><strong>{{ result.created_at }}</strong></div></div>
+<div class="risk {{ 'positive' if result.prediction == 'Positive' else 'negative' }}">
+<div><i class="fa-solid {{ 'fa-triangle-exclamation' if result.prediction == 'Positive' else 'fa-circle-check' }}"></i></div>
+<div class="prediction-label">Model classification</div><h2 style="margin:0">{{ result.prediction }}</h2><div class="probability">{{ result.probability }}%</div><div>Estimated probability of the positive class</div>
+</div>
+{% if result.preview_path %}<div class="preview"><strong>Scan preview</strong><p class="help">A representative central slice is shown for visual reference only; it is not a diagnostic image.</p><img src="{{ url_for('preview_file', filename=result.preview_path) }}" alt="Representative MRI slice"></div>{% endif %}
+<div class="notice info"><strong>Interpretation:</strong> This probability comes from the configured machine-learning ensemble and should not be treated as a clinical diagnosis.</div>
+<div class="actions"><a class="btn btn-primary" href="{{ url_for('download_pdf',patient_id=result.id) }}"><i class="fa-solid fa-file-pdf"></i> Download report</a><a class="btn btn-light" href="{{ url_for('upload') }}"><i class="fa-solid fa-plus"></i> New analysis</a>{% if session.get('role')=='admin' %}<a class="btn btn-light" href="{{ url_for('dashboard') }}">Dashboard</a>{% endif %}</div>
+</div></div></div></main>{% endblock %}

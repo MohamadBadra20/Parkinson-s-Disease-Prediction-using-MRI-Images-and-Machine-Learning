@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}NeuroVision | About{% endblock %}
+{% block content %}<section class="page-hero"><div class="container"><h1>About NeuroVision</h1><p>A research-oriented interface for AI-assisted Parkinson’s disease analysis.</p></div></section>
+<section class="section"><div class="container grid-2">
+<div class="card"><div class="icon-box"><i class="fa-solid fa-bullseye"></i></div><h3>Our purpose</h3><p>NeuroVision connects a reproducible neuroimaging workflow with a simple web interface so users can submit compatible resting-state fMRI data and review the resulting model output.</p></div>
+<div class="card"><div class="icon-box"><i class="fa-solid fa-brain"></i></div><h3>What it analyzes</h3><p>The current pipeline uses an AAL atlas, extracts ROI-level time series, computes Pearson functional connectivity and sends the resulting feature vector through the configured machine-learning ensemble.</p></div>
+<div class="card"><div class="icon-box"><i class="fa-solid fa-lock"></i></div><h3>Privacy</h3><p>Uploaded files are processed temporarily and removed after analysis. Patient metadata is stored in the local SQLite database used by this application. Deployments should add production-grade encryption, access controls and auditing.</p></div>
+<div class="card"><div class="icon-box"><i class="fa-solid fa-user-doctor"></i></div><h3>Clinical responsibility</h3><p>The model is a research support tool. Its predictions are not a diagnosis and must be interpreted by qualified professionals together with clinical evidence.</p></div>
+</div></section>{% endblock %}

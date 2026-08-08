@@ -1,0 +1,9 @@
+Flask==3.1.2
+numpy>=1.26,<2.4
+nibabel>=5.2,<6
+nilearn>=0.10,<1
+scikit-learn==1.8.0
+imbalanced-learn==0.14.0
+joblib>=1.3,<2
+reportlab>=4.0,<5
+Pillow>=10,<12
