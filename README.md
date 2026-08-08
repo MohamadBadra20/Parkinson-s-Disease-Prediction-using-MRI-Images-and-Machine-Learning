@@ -193,7 +193,7 @@ application that takes a raw fMRI upload, runs the full feature-extraction pipel
 a PD probability with a downloadable PDF report.
 
 <p align="center">
-<img src="NeuroVision_Final/Images/Parkinson Disease image.png" width="60%">
+<img src="NeuroVision_Final/Images/web_screenshot.png" width="60%">
 </p>
 
 **Features:**
